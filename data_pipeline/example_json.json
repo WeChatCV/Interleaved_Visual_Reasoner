@@ -1,0 +1,45 @@
+[
+    {
+        "__field_docs": {
+            "key":          "Unique sample identifier. Used as the output sub-directory name (e.g. './outputs/success/<key>/'). Must be unique across the input list.",
+            "src_path":     "Source image input for the edit. Three accepted shapes: (1) a string path to a single image for ordinary image editing; (2) a list of string paths for multi-reference editing where the model conditions on several reference images at once; (3) null for text-to-image (T2I) generation, where there is no source image and only the edit_prompt drives the result.",
+            "edit_prompt":  "Natural-language instruction describing the desired edit / T2I prompt. Drives generation, evaluation, reflection and multi-step decomposition.",
+            "edit_path":    "Path to the image produced by your own unified model (the candidate output you want to evaluate / improve). If non-null, the pipeline copies it as the direct-edit result and scores it directly, skipping the initial Gemini call. Set to null to let the pipeline generate the first candidate from scratch.",
+            "edit_key":     "(Optional, free-form) Any metadata you want preserved in result.json (benchmark name, sub-category, original prompt, etc.). NOT consumed by the pipeline; just copied through to the output.",
+            "explanation":  "(Optional) Extra context shown to the knowledge evaluator, e.g. real-world facts the edit must respect. Empty string if not needed."
+        },
+
+        "__comment": "Example 1 - image editing: src_path is a single source image; edit_path points to your unified model's edit of that image.",
+        "key": "sample_0001",
+        "src_path": "/path/to/source_image.png",
+        "edit_prompt": "<Describe the desired edit, e.g. 'Replace the cat on the sofa with a golden retriever, keep the background unchanged.'>",
+        "edit_path": "/path/to/your_unified_model_output.png",
+        "edit_key": {
+            "_note": "Free-form. Put anything you want preserved in the output result.json.",
+            "benchmark": "<your benchmark name>",
+            "original_prompt": "<original prompt / language / sub-category / ...>"
+        },
+        "explanation": ""
+    },
+    {
+        "__comment": "Example 2 - text-to-image (T2I): src_path is null since there is no source image; edit_path is your unified model's T2I output (or null to generate from scratch).",
+        "key": "sample_0002_t2i",
+        "src_path": null,
+        "edit_prompt": "<T2I prompt, e.g. 'A red panda sipping tea on a bamboo balcony at sunset, watercolor style.'>",
+        "edit_path": "/path/to/your_unified_model_t2i_output.png",
+        "edit_key": { "task_type": "t2i" },
+        "explanation": ""
+    },
+    {
+        "__comment": "Example 3 - multi-reference editing: src_path is a list of image paths; edit_path is your unified model's output that combines them.",
+        "key": "sample_0003_multi_ref",
+        "src_path": [
+            "/path/to/reference_image_1.png",
+            "/path/to/reference_image_2.png"
+        ],
+        "edit_prompt": "<Instruction that involves both reference images>",
+        "edit_path": "/path/to/your_unified_model_multiref_output.png",
+        "edit_key": { "task_type": "multi_reference_edit" },
+        "explanation": ""
+    }
+]

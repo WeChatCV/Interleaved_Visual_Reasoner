@@ -1,0 +1,28 @@
+{
+  "instruction": "Change the dog's collar to red and add a small bell on it.",
+  "source_images": ["/path/to/source_dog.jpg"],
+  "explanation": "A real-world dog collar should sit on the neck, follow the curvature, and the bell should be subject to gravity (hang down).",
+
+  "assistant_text": "<think>I will first recolor the existing collar to red, then add a small bell hanging at the front.</think><image>step_1.jpg</image><think>The red collar looks correct, but no bell is present. I will add a small bell at the lowest point of the collar so that it hangs naturally.</think><image>step_2.jpg</image>",
+
+  "intermediate_steps": [
+    {
+      "instruction": "Recolor the dog's collar to a saturated red while keeping its shape.",
+      "image": "/path/to/step_1.jpg"
+    },
+    {
+      "instruction": "Add a small golden bell hanging from the front of the red collar.",
+      "image": "/path/to/step_2.jpg"
+    }
+  ],
+
+  "final_image": "/path/to/step_2.jpg",
+
+  "reflections": [
+    {
+      "prev_image": "/path/to/step_1.jpg",
+      "text": "The red collar looks correct, but no bell is present. I will add a small bell at the lowest point of the collar so that it hangs naturally.",
+      "next_image": "/path/to/step_2.jpg"
+    }
+  ]
+}
