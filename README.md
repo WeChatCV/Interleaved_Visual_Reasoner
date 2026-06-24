@@ -1,4 +1,4 @@
-# Interleaved Visual Reasoner
+# Interleaved Visual Reasoner 
 
 > Official open-source release of *ICML 2026 Breaking the Dual Bottleneck of Visual Reasoning: An Interleaved Vision-Language Reasoner for Image Generation and Editing.*
 
